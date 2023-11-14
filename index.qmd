@@ -16,15 +16,18 @@ import plotly.express as px
 import numpy as np
 import pooch
 import zipfile
+import requests
 #| echo: false
 from dateutil.relativedelta import relativedelta
-
 # Source: #
 
 current_time = datetime.now()
 last_date = current_time - relativedelta(months=2)
-fname_meteo = pooch.retrieve(f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin", known_hash=None)
-print(fname_meteo)
+
+response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
+
+data = response.json()
+print(data)
 
 
 
@@ -32,28 +35,20 @@ print(fname_meteo)
 
 
 ```{python}
-import json
-# Opening JSON file
-f = open(fname_meteo)
-# returns JSON object as 
-# a dictionary
-data = json.load(f)
-# Iterating through the json
-# list
+
 json_string = json.dumps(data)  # Convert Python dictionary to a JSON string
-print(json_string)
-print(data["hourly"]["wind_speed_10m"])
 t = []
 t2=[]
-day1=[]
+wind_day=[]
 tabday=[]
+tabmonth=[]
 for time, speed in zip(data["hourly"]["time"], data["hourly"]["wind_speed_10m"]):
     day = time.split("T")[0]  # Extraire la partie "jour" de la date et de l'heure
     hour = time.split("T")[1]
     t.append(speed)
     t2.append(hour)
     if hour == '23:00':
-        day1.append(np.mean(t))
+        wind_day.append(np.mean(t))
         tabday.append(day)
         t=[]  
 
@@ -63,12 +58,13 @@ for i in range (7):
     date_obj = datetime.strptime(tabday[i], '%Y-%m-%d')
 
 # Obtenir le jour de la semaine (en anglais)
-    jour_semaine = date_obj.strftime("%A")
-    nameday.append(jour_semaine)
-    
+    nameday.append(date_obj.strftime("%A"))
+    wind_day[i]=round(wind_day[i], 2)
+    tabmonth.append(str(date_obj.day) +" "+ date_obj.strftime("%B"))
+
 print(nameday)
 print(t2) 
-print(day1)
+print(wind_day)
 print(tabday)
 print(data["daily"]["weather_code"])
 print(data["daily"]["temperature_2m_max"])
@@ -77,29 +73,130 @@ print(data["daily"]["sunrise"])
 print(data["daily"]["sunset"])
 print(data["daily"]["precipitation_sum"])
 print(data["daily"]["wind_direction_10m_dominant"])
-# Closing file
-f.close()
+
+
+
+#TABLEAU METEO
+
+html_code = f"""
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<table id="myTable">
+    <!-- Ligne 1 -->
+    <tr title="Date" style="background-color: rgb(180, 255, 255)">
+        <th style="background-color: rgb(255, 255, 255); border-top:3px solid rgb(20, 15, 185); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
+            <strong>{nameday[0]}
+            </strong>
+            <br>Today
+        </th>
+        <th>
+            <strong> {nameday[1]} </strong>
+            <br>Tomorrow
+        </th>
+        <th>
+            <strong> {nameday[2]} </strong>
+            <br>{tabmonth[2]}
+        </th>
+        <th>
+            <strong> {nameday[3]} </strong>
+            <br>{tabmonth[3]}
+        </th>
+        <th>
+            <strong> {nameday[4]} </strong>
+            <br>{tabmonth[4]}
+        </th>
+    </tr>
+
+    <!-- Ligne 2 -->
+    <tr title="Températures minimale - maximale" style="background-color: rgb(180, 255, 255)">
+        <th style="background-color: rgb(255, 255, 255); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][0]}
+            <br> Max : {data["daily"]["temperature_2m_max"][0]}
+        </th>
+        <th>
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][1]}
+            <br> Max :{data["daily"]["temperature_2m_max"][1]}
+        </th>
+        <th>
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][2]}
+            <br> Max :{data["daily"]["temperature_2m_max"][2]}
+        </th>
+        <th>
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][3]}
+            <br> Max:{data["daily"]["temperature_2m_max"][3]}
+        </th>
+        <th>
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][4]}
+            <br> Max :{data["daily"]["temperature_2m_max"][4]}
+        </th>
+    </tr>
+
+    <!-- Ligne 3 -->
+    <tr title="Vitesse moyenne du vent" style="background-color: rgb(180, 255, 255)">
+        <th style="background-color: rgb(255, 255, 255); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
+            {wind_day[0]} km/h
+            <br>{data["daily"]["wind_direction_10m_dominant"][0]} 
+        </th>
+        <th>
+            {wind_day[1]} km/h
+            <br>{data["daily"]["wind_direction_10m_dominant"][1]}
+        </th>
+        <th>
+            {wind_day[2]} km/h
+            <br>{data["daily"]["wind_direction_10m_dominant"][2]}
+        </th>
+        <th>
+            {wind_day[3]} km/h
+            <br> Direction :
+                <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][3]}); display: inline-block; margin: 0 auto;">
+                    <div style="width: 12px; height: 12px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
+                    </div>
+            </div>
+        </th>
+        <th>
+            {wind_day[4]} km/h
+            <br> Direction : 
+            <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][4]}); display: inline-block; margin: 0 auto;">
+                
+                <div style="width: 12px; height: 12px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
+            
+                </div>
+            </div>
+        </th>
+    </tr>
+
+
+
+    <!-- Ligne 4 -->
+    <tr title="Quantité de précipitations" style="background-color: rgb(180, 255, 255)">
+        <th style="background-color: rgb(255, 255, 255); border-bottom:3px solid rgb(20, 15, 185); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
+            <img src="images_svg/humidity.svg"> {data["daily"]["precipitation_sum"][0]} mm
+        </th>
+        <th>
+            <img src="images_svg/humidity.svg"> {data["daily"]["precipitation_sum"][1]} mm
+        </th>
+        <th>
+            <img src="images_svg/humidity.svg"> {data["daily"]["precipitation_sum"][2]} mm
+        </th>
+        <th>
+            <img src="images_svg/humidity.svg"> {data["daily"]["precipitation_sum"][3]} mm
+        </th>
+        <th>
+            <img src="images_svg/humidity.svg"> {data["daily"]["precipitation_sum"][4]} mm
+        </th>
+    </tr>
+</table>
+"""
+
+display(HTML(html_code))
 ```
-
-
-:::: {.columns}
-::: {.column width="10%"}
-**```{python}nameday[1]```**
-**```{python}nameday[1]```**
-::: {.column width="10%"}
-::: {.column width="1,66%"}
-::: {.column width="10%"}
-::: {.column width="1,66%"}
-::: {.column width="10%"}
-::: {.column width="1,66%"}
-::: {.column width="10%"}
-::: {.column width="1,66%"}
-::: {.column width="10%"}
-::: {.column width="1,66%"}
-::: {.column width="10%"}
-::: {.column width="1,66%"}
-::: {.column width="10%"}
-::: {.column width="10%"}
 
 ```{python}
 print(f"Computation was performed at : {current_time} (GMT)")

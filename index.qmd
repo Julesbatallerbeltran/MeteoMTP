@@ -27,7 +27,6 @@ last_date = current_time - relativedelta(months=2)
 response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
 
 data = response.json()
-print(data)
 
 
 
@@ -35,7 +34,8 @@ print(data)
 
 
 ```{python}
-
+#| echo: false
+#| warning: false
 json_string = json.dumps(data)  # Convert Python dictionary to a JSON string
 t = []
 t2=[]
@@ -53,6 +53,7 @@ for time, speed in zip(data["hourly"]["time"], data["hourly"]["wind_speed_10m"])
         t=[]  
 
 nameday=[]
+imgsrc=[]
 for i in range (7):
 # Convertir la chaîne de date en un objet datetime
     date_obj = datetime.strptime(tabday[i], '%Y-%m-%d')
@@ -62,17 +63,27 @@ for i in range (7):
     wind_day[i]=round(wind_day[i], 2)
     tabmonth.append(str(date_obj.day) +" "+ date_obj.strftime("%B"))
 
-print(nameday)
-print(t2) 
-print(wind_day)
-print(tabday)
-print(data["daily"]["weather_code"])
-print(data["daily"]["temperature_2m_max"])
-print(data["daily"]["temperature_2m_min"])
-print(data["daily"]["sunrise"])
-print(data["daily"]["sunset"])
-print(data["daily"]["precipitation_sum"])
-print(data["daily"]["wind_direction_10m_dominant"])
+
+######
+noms_images = ["0.svg", "1-2.svg", "3.svg", "4-10-11-12-28-40-41-42-43-44-45-46-47-48-49.svg",
+    "5.svg", "6-7-8-9-30-31-32-33-34-35.svg", "13-17-29-95-96-97-98-99.svg",
+    "14-15-16-20-50-51-52-53-54-55-56-57-58-59.svg", "18-19.svg", "21-91.svg",
+    "22-23-24-26-27-67-68-69-83-84-93-94.svg", "25-36-37-38-39-70-71-72-73-74-75-76-77-78-79-85-86-87-88.svg",
+    "27-89-90.svg", "60-61-62-63-64-65-66-80-81-82-92.svg", "97.svg"]
+
+association_images_chiffres = {}
+tabimg=[]
+# Associer chaque chiffre à l'image
+for chiffre in (data["daily"]["weather_code"]):
+    for nom_image in noms_images:
+        if str(chiffre) in nom_image:
+            association_images_chiffres[chiffre] = []
+            association_images_chiffres[chiffre].append(nom_image)
+            tabimg.append(nom_image)
+            break
+
+# Afficher le résultat
+######
 
 
 
@@ -83,12 +94,11 @@ html_code = f"""
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<table id="myTable">
+<table>
     <!-- Ligne 1 -->
-    <tr title="Date" style="background-color: rgb(180, 255, 255)">
-        <th style="background-color: rgb(255, 255, 255); border-top:3px solid rgb(20, 15, 185); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
-            <strong>{nameday[0]}
-            </strong>
+    <tr title="Date" style="background-color: rgb(180, 180, 180)">
+        <th>    
+            <strong>{nameday[0]} </strong>
             <br>Today
         </th>
         <th>
@@ -107,33 +117,43 @@ html_code = f"""
             <strong> {nameday[4]} </strong>
             <br>{tabmonth[4]}
         </th>
+                <th>
+            <strong> {nameday[5]} </strong>
+            <br>{tabmonth[5]}
+        </th>
+        <th>
+            <strong> {nameday[6]} </strong>
+            <br>{tabmonth[6]}
+        </th>
     </tr>
     <!-- Ligne Images svg -->
-        <tr title="Date" style="background-color: rgb(180, 255, 255)">
-        <th style="background-color: rgb(255, 255, 255); border-top:3px solid rgb(20, 15, 185); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
-            <strong>{nameday[0]}
-            </strong>
-            <br>Today
+        <tr title="Date" style="background-color: rgb(255, 255, 255)">
+        <th>
+            <img src="{tabimg[0]}" width="100px" height="75px">
         </th>
         <th>
-            <strong> {nameday[1]} </strong>
-            <br>Tomorrow
+            <img src="{tabimg[1]}" width="100px" height="75px">
         </th>
         <th>
-            <strong> {nameday[2]} </strong>
-            <br>{tabmonth[2]}
+            <img src="{tabimg[2]}" width="100px" height="75px"> 
         </th>
         <th>
-            <strong> {nameday[3]} </strong>
-            <br>{tabmonth[3]}
+            <img src="{tabimg[3]}" width="100px" height="75px"> 
         </th>
         <th>
-            <img src="docs/humidity.svg">
+            <img src="{tabimg[4]}" width="100px" height="75px"> 
         </th>
+        <th>
+            <img src="{tabimg[5]}" width="100px" height="75px"> 
+        </th>
+        <th>
+            <img src="{tabimg[6]}" width="100px" height="75px"> 
+        </th>
+        
     </tr>
     <!-- Ligne 2 -->
-    <tr title="Températures minimale - maximale" style="background-color: rgb(180, 255, 255)">
-        <th style="background-color: rgb(255, 255, 255); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
+    <tr title="Temperatures min- max" style="background-color: rgb(255, 255, 255)">
+        <th>
             Temperatures
             <br> Min :{data["daily"]["temperature_2m_min"][0]}
             <br> Max : {data["daily"]["temperature_2m_max"][0]}
@@ -158,15 +178,25 @@ html_code = f"""
             <br> Min :{data["daily"]["temperature_2m_min"][4]}
             <br> Max :{data["daily"]["temperature_2m_max"][4]}
         </th>
+        <th>
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][5]}
+            <br> Max :{data["daily"]["temperature_2m_max"][5]}
+        </th>
+        <th>
+            Temperatures
+            <br> Min :{data["daily"]["temperature_2m_min"][6]}
+            <br> Max :{data["daily"]["temperature_2m_max"][6]}
+        </th>
     </tr>
 
     <!-- Ligne 3 -->
 
 
-        <th style="background-color: rgb(255, 255, 255); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
+        <th>
             {wind_day[0]} km/h
             <br> Direction : 
-            <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][0]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][0]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -178,7 +208,7 @@ html_code = f"""
         <th>
             {wind_day[1]} km/h
             <br> Direction : 
-            <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][1]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][1]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -190,7 +220,7 @@ html_code = f"""
         <th>
             {wind_day[2]} km/h
             <br> Direction : 
-            <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][2]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][2]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -202,7 +232,7 @@ html_code = f"""
         <th>
             {wind_day[3]} km/h
             <br> Direction :
-                <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][3]}deg); display: inline-block; margin: 0 auto;">
+                <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][3]}deg); display: inline-block; margin: 0 auto;">
 
                     <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
                     </div>
@@ -213,32 +243,65 @@ html_code = f"""
         <th>
             {wind_day[4]} km/h
             <br> Direction : 
-            <div style="width: 12px; height: 12px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][4]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][4]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
                 </div>
             </div>
         </th>
+        <th>
+            {wind_day[5]} km/h
+            <br> Direction : 
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][5]}deg); display: inline-block; margin: 0 auto;">
+                
+                <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
+            
+                </div>
+            </div> 
+        </th>
+        <th>
+            {wind_day[6]} km/h
+            <br> Direction : 
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][6]}deg); display: inline-block; margin: 0 auto;">
+                
+                <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
+            
+                </div>
+            </div> 
+        </th>
     </tr>
 
 
 
     <!-- Ligne 4 -->
-        <th style="background-color: rgb(255, 255, 255); border-bottom:3px solid rgb(20, 15, 185); border-right:3px solid rgb(20, 15, 185); border-left:3px solid rgb(20, 15, 185)">
-            <img src="docs/humidity.svg"> {data["daily"]["precipitation_sum"][0]} mm
+        <th>
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][0]} mm
         </th>
         <th>
-            <img src="docs/humidity.svg"> {data["daily"]["precipitation_sum"][1]} mm
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][1]} mm
         </th>
         <th>
-            <img src="docs/humidity.svg"> {data["daily"]["precipitation_sum"][2]} mm
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][2]} mm
         </th>
         <th>
-            <img src="docs/humidity.svg"> {data["daily"]["precipitation_sum"][3]} mm
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][3]} mm
         </th>
         <th>
-            <img src="docs/humidity.svg"> {data["daily"]["precipitation_sum"][4]} mm
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][4]} mm
+        </th>
+        <th>
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][5]} mm
+        </th>
+        <th>
+            Precipitations
+            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][6]} mm
         </th>
     </tr>
 </table>
@@ -248,7 +311,10 @@ display(HTML(html_code))
 ```
 
 ```{python}
+#| echo: false
+#| warning: false
 print(f"Computation was performed at : {current_time} (GMT)")
 ```
 
-Sources are:
+Sources are: <a href="https://open-meteo.com/
+">Open meteo</a>

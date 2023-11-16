@@ -257,7 +257,7 @@ html_code = f"""
         <td>
             {wind_day[0]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][0]}deg); display: inline-block; margin: 0 auto;"> 
+            <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][0]}deg); display: inline-block; margin: 0 auto;"> 
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -270,7 +270,7 @@ html_code = f"""
         <td>
             {wind_day[1]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][1]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][1]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -283,7 +283,7 @@ html_code = f"""
         <td>
             {wind_day[2]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][2]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][2]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -296,7 +296,7 @@ html_code = f"""
         <td>
             {wind_day[3]} km/h
             <br> Direction :
-                <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][3]}deg); display: inline-block; margin: 0 auto;">
+                <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][3]}deg); display: inline-block; margin: 0 auto;">
 
                     <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
                     </div>
@@ -308,7 +308,7 @@ html_code = f"""
         <td>
             {wind_day[4]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][4]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][4]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -319,7 +319,7 @@ html_code = f"""
         <td>
             {wind_day[5]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][5]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][5]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -330,7 +330,7 @@ html_code = f"""
         <td>
             {wind_day[6]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][6]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 15px; height: 15px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][6]}deg); display: inline-block; margin: 0 auto;">
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             

@@ -2,15 +2,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "MeteoMTP",
+    "title": "Weather forecast in Montpellier",
     "section": "",
-    "text": "Thursday\nToday\n\nFriday\nTomorrow\n\nSaturday\n18 November\n\nSunday\n19 November\n\nMonday\n20 November\n\nTuesday\n21 November\n\nWednesday\n22 November\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTemperatures\nMin :6.7°\nMax : 15.2°\n\nTemperatures\nMin :10.1°\nMax :16.3°\n\nTemperatures\nMin :6.0°\nMax :15.7°\n\nTemperatures\nMin :6.5°\nMax:21.5°\n\nTemperatures\nMin :11.0°\nMax :17.1°\n\nTemperatures\nMin :10.3°\nMax :17.1°\n\nTemperatures\nMin :6.8°\nMax :13.9°\n\n\n\n8 km/h\nDirection :\n\n\n\n\n\n\n\n13 km/h\nDirection :\n\n\n\n\n\n\n\n4 km/h\nDirection :\n\n\n\n\n\n\n\n5 km/h\nDirection :\n\n\n\n\n\n\n\n12 km/h\nDirection :\n\n\n\n\n\n\n\n17 km/h\nDirection :\n\n\n\n\n\n\n\n19 km/h\nDirection :\n\n\n\n\n\n\n\n\n\nPrecipitation  0.8 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\n\n\n\n\n\n\n\nComputation was performed at : 2023-11-16 12:06:19 (GMT)\n2023-11-16 11:03:32.946815\n\n\nSources are: Open meteo"
+    "text": "Thursday\nToday\n\nFriday\nTomorrow\n\nSaturday\n18 November\n\nSunday\n19 November\n\nMonday\n20 November\n\nTuesday\n21 November\n\nWednesday\n22 November\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTemperatures\nMin :6.7°\nMax : 14.7°\n\nTemperatures\nMin :10.8°\nMax :16.6°\n\nTemperatures\nMin :6.5°\nMax :16.7°\n\nTemperatures\nMin :7.0°\nMax:21.3°\n\nTemperatures\nMin :11.0°\nMax :17.1°\n\nTemperatures\nMin :9.3°\nMax :16.0°\n\nTemperatures\nMin :7.6°\nMax :14.3°\n\n\n\n7 km/h\nDirection :\n\n\n\n\n\n\n\n13 km/h\nDirection :\n\n\n\n\n\n\n\n4 km/h\nDirection :\n\n\n\n\n\n\n\n8 km/h\nDirection :\n\n\n\n\n\n\n\n11 km/h\nDirection :\n\n\n\n\n\n\n\n17 km/h\nDirection :\n\n\n\n\n\n\n\n19 km/h\nDirection :\n\n\n\n\n\n\n\n\n\nPrecipitation  0.8 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\n\n\n\n\n\n\n\nComputation was performed at : 2023-11-16 18:36:58 (GMT)\n\n\nSources are: Open meteo"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "This site show the weather forecast of Montpellier\nFirst of all i tried to get the data via Pooch retrieve and used this to get all the data I needed. I then printed them all to see them then tried to get them in multiple variable. I took hourly variable and took the max and min of temperatures, then made the mean of the wind speed per hour."
   }
 ]

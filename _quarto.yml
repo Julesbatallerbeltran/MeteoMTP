@@ -1,12 +1,12 @@
 on:
   schedule:
-    - cron: '15 * * * *'
+    - cron: '*/15 * * * *'
 
 project:
   type: website
   output-dir: docs
   render:
-   - economics/index.qmd
+   - index.qmd
 
 
 website:

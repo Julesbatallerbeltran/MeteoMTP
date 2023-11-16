@@ -177,31 +177,31 @@ html_code = f"""
     <!-- Ligne Images svg -->
         <tr title="Date" style="background-color: rgb(70, 130, 180)">
         <td>
-            <img src="docs/{tabimg[0]}" width="100px" height="75px">
+            <img src="images/{tabimg[0]}" width="100px" height="75px">
             <br>
         </td>
         <td>
-            <img src="docs/{tabimg[1]}" width="100px" height="75px">
+            <img src="images/{tabimg[1]}" width="100px" height="75px">
             <br>
         </td>
         <td>
-            <img src="docs/{tabimg[2]}" width="100px" height="75px"> 
+            <img src="images/{tabimg[2]}" width="100px" height="75px"> 
             <br>
         </td>
         <td>
-            <img src="docs/{tabimg[3]}" width="100px" height="75px"> 
+            <img src="images/{tabimg[3]}" width="100px" height="75px"> 
             <br>
         </td>
         <td>
-            <img src="docs/{tabimg[4]}" width="100px" height="75px"> 
+            <img src="images/{tabimg[4]}" width="100px" height="75px"> 
             <br>
         </td>
         <td>
-            <img src="docs/{tabimg[5]}" width="100px" height="75px"> 
+            <img src="images/{tabimg[5]}" width="100px" height="75px"> 
             <br>
         </td>
         <td>
-            <img src="docs/{tabimg[6]}" width="100px" height="75px"> 
+            <img src="images/{tabimg[6]}" width="100px" height="75px"> 
             <br>
         </td>
         
@@ -349,37 +349,37 @@ html_code = f"""
     
         <td>
             Precipitation <br>
-            <img src="docs/humidity.svg" width="20px" height="15px"> 
+            <img src="images/humidity.svg" width="20px" height="15px"> 
             {data["daily"]["precipitation_sum"][0]} mm
         </td>
         <td>
             Precipitation <br>
-            <img src="docs/humidity.svg" width="20px" height="15px">
+            <img src="images/humidity.svg" width="20px" height="15px">
             {data["daily"]["precipitation_sum"][1]} mm
         </td>
         <td>
             Precipitation <br>
-            <img src="docs/humidity.svg" width="20px" height="15px">
+            <img src="images/humidity.svg" width="20px" height="15px">
             {data["daily"]["precipitation_sum"][2]} mm
         </td>
         <td>
             Precipitation <br>
-            <img src="docs/humidity.svg" width="20px" height="15px">
+            <img src="images/humidity.svg" width="20px" height="15px">
             {data["daily"]["precipitation_sum"][3]} mm
         </td>
         <td>
             Precipitation<br>
-            <img src="docs/humidity.svg" width="20px" height="15px">
+            <img src="images/humidity.svg" width="20px" height="15px">
             {data["daily"]["precipitation_sum"][4]} mm
         </td>
         <td>
             Precipitation<br>
-            <img src="docs/humidity.svg" width="20px" height="15px"> 
+            <img src="images/humidity.svg" width="20px" height="15px"> 
             {data["daily"]["precipitation_sum"][5]} mm
         </td>
         <td>
             Precipitation<br>
-            <img src="docs/humidity.svg" width="20px" height="15px">
+            <img src="images/humidity.svg" width="20px" height="15px">
              {data["daily"]["precipitation_sum"][6]} mm
         </td>
     </tr>

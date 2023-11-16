@@ -249,7 +249,7 @@ html_code = f"""
     </tr>
 
     <!-- Ligne 3 -->
-    <tr title="Vent moyen et direction moyenne" style="background-color: rgb(192, 192, 192)">
+    <tr title="Vent moyen et direction moyenne" style="background-color: rgb(255, 235, 235)">
 
         <td>
             {wind_day[0]} km/h

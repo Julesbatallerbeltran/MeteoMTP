@@ -3,64 +3,71 @@ title: "Weather forecast in Montpellier"
 ---
 
 
-
 ```{python}
 #| echo: false
 #| warning: false
-
 from IPython.display import display, HTML
 import json
 from datetime import datetime, timedelta
-import pandas as pd
-import plotly.express as px
+#import pandas as pd
+#import plotly.express as px
 import numpy as np
-import pooch
-import zipfile
+#import pooch
+#import zipfile
 import requests
+#import schedule
 import time
-#| echo: false
 from dateutil.relativedelta import relativedelta
 # Source:
 
 ##
-def store_data(response_data):
-    timestamp = time.time()
-    with open('data.json', 'w') as file:
-        json.dump({'timestamp': timestamp, 'data': response_data}, file)
+#def store_data(response_data):
+#    timestamp = time.time()
+#    with open('data.json', 'w') as file:
+#        json.dump({'timestamp': timestamp, 'data': response_data}, file)
+#
+#def should_make_api_call():
+#    try:
+#        with open('data.json', 'r') as file:
+#            data = json.load(file)
+#            last_timestamp = data.get('timestamp', 0)
+#            now_timestamp = timestamp = time.time()
+#            return (now_timestamp - last_timestamp) > 90  # 3600 seconds = 1 #hour
+#    except (FileNotFoundError, json.JSONDecodeError):
+#        # File doesn't exist or cannot be decoded, make a new API call
+#        return True
+###
+#if should_make_api_call():
+#    # Make the API request
+#    current_time=datetime.now()
+#    response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
+#
+#    if response.status_code == 200:
+#        response_data = response.json()
+#        # Process and store the data
+#        store_data(response_data)
+#    else:
+#        print(f"Error: {response.status_code}")
+#else:
+#    # Use the cached data
+#    with open('data.json', 'r') as file:
+#        data = json.load(file)
+#        response_data = data.get('data', {})
+#        current_time=datetime.utcfromtimestamp(data.get('timestamp', 0))
 
-def should_make_api_call():
-    try:
-        with open('data.json', 'r') as file:
-            data = json.load(file)
-            last_timestamp = data.get('timestamp', 0)
-            now_timestamp = timestamp = time.time()
-            return (now_timestamp - last_timestamp) > 90  # 3600 seconds = 1 hour
-    except (FileNotFoundError, json.JSONDecodeError):
-        # File doesn't exist or cannot be decoded, make a new API call
-        return True
-##
-if should_make_api_call():
-    # Make the API request
-    current_time=datetime.now()
-    response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
-
-    if response.status_code == 200:
-        response_data = response.json()
-        # Process and store the data
-        store_data(response_data)
-    else:
-        print(f"Error: {response.status_code}")
-else:
-    # Use the cached data
-    with open('data.json', 'r') as file:
-        data = json.load(file)
-        response_data = data.get('data', {})
-        current_time=datetime.utcfromtimestamp(data.get('timestamp', 0))
-
-
-
-
-data=response_data
+#def request_data():
+#    response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
+#    response.json()
+#    current_time=datetime.now()
+#
+#schedule.every(1).minutes.do(request_data)
+#while True:
+#    schedule.run_pending()
+#    time.sleep(1)
+response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
+data=response.json()
+current_time=datetime.now()
+data
 
 
 

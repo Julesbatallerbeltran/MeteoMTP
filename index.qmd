@@ -350,32 +350,39 @@ html_code = f"""
     <tr title="Vent moyen et direction moyenne" style="background-color: rgb(135, 206, 250)">
     
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][0]} mm
+            Precipitation <br>
+            <img src="docs/humidity.svg" width="20px" height="15px"> 
+            {data["daily"]["precipitation_sum"][0]} mm
         </td>
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][1]} mm
+            Precipitation <br>
+            <img src="docs/humidity.svg" width="20px" height="15px">
+            {data["daily"]["precipitation_sum"][1]} mm
         </td>
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][2]} mm
+            Precipitation <br>
+            <img src="docs/humidity.svg" width="20px" height="15px">
+            {data["daily"]["precipitation_sum"][2]} mm
         </td>
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][3]} mm
+            Precipitation <br>
+            <img src="docs/humidity.svg" width="20px" height="15px">
+            {data["daily"]["precipitation_sum"][3]} mm
         </td>
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][4]} mm
+            Precipitation<br>
+            <img src="docs/humidity.svg" width="20px" height="15px">
+            {data["daily"]["precipitation_sum"][4]} mm
         </td>
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][5]} mm
+            Precipitation<br>
+            <img src="docs/humidity.svg" width="20px" height="15px"> 
+            {data["daily"]["precipitation_sum"][5]} mm
         </td>
         <td>
-            Precipitation
-            <img src="docs/humidity.svg" width="20px" height="15px"> {data["daily"]["precipitation_sum"][6]} mm
+            Precipitation<br>
+            <img src="docs/humidity.svg" width="20px" height="15px">
+             {data["daily"]["precipitation_sum"][6]} mm
         </td>
     </tr>
 </table>

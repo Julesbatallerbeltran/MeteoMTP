@@ -17,16 +17,50 @@ import numpy as np
 import pooch
 import zipfile
 import requests
+import time
 #| echo: false
 from dateutil.relativedelta import relativedelta
-# Source: #
+# Source:
 
-current_time = datetime.now()
-last_date = current_time - relativedelta(months=2)
+##
+def store_data(response_data):
+    timestamp = time.time()
+    with open('data.json', 'w') as file:
+        json.dump({'timestamp': timestamp, 'data': response_data}, file)
 
-response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
+def should_make_api_call():
+    try:
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+            last_timestamp = data.get('timestamp', 0)
+            now_timestamp = timestamp = time.time()
+            return (now_timestamp - last_timestamp) > 90  # 3600 seconds = 1 hour
+    except (FileNotFoundError, json.JSONDecodeError):
+        # File doesn't exist or cannot be decoded, make a new API call
+        return True
+##
+if should_make_api_call():
+    # Make the API request
+    current_time=datetime.now()
+    response = requests.get( f"https://api.open-meteo.com/v1/forecast?latitude=43.6109&longitude=3.8763&hourly=wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,wind_direction_10m_dominant&timezone=Europe%2FBerlin")
 
-data = response.json()
+    if response.status_code == 200:
+        response_data = response.json()
+        # Process and store the data
+        store_data(response_data)
+    else:
+        print(f"Error: {response.status_code}")
+else:
+    # Use the cached data
+    with open('data.json', 'r') as file:
+        data = json.load(file)
+        response_data = data.get('data', {})
+        current_time=datetime.utcfromtimestamp(data.get('timestamp', 0))
+
+
+
+
+data=response_data
 
 
 
@@ -347,8 +381,12 @@ display(HTML(html_code))
 ```{python}
 #| echo: false
 #| warning: false
+#| 
+datetime.utcfromtimestamp(1700131598.8112667)
+
 CT=current_time.replace(microsecond=0)
 print(f"Computation was performed at : {CT} (GMT)")
+print(datetime.utcfromtimestamp(1700132612.9468145))
 ```
 
 Sources are: <a href="https://open-meteo.com/

@@ -11,11 +11,21 @@ project:
 
 website:
   title: "MeteoMTP"
+  page-navigation: true
+  repo-url: https://julesbatallerbeltran.github.io/MeteoMTP/
+  repo-actions: [source, issue]
+  
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+      
+execute:
+  echo: false  
+
+jupyter: python3
+
 
 format:
   html:

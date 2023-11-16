@@ -14,4 +14,10 @@ I though the code will call the API each time someone would tried to go on the s
 I then understood we didn't put the qmd online, but only the html that I was creating each time I preview my index qmd.
 The evalution was to make an automatic site so it was failed.
 
-i now try to make a cron on the yml file.
+I recover some images in png and made them svg using a converter.
+
+I changed their name to get along with the WMO they are associated with so i could link them with their number, using some adanced code.
+
+I now make a cron on the publish.yml file.
+
+My website now shows the weather of Montpellier for the 7 next days.

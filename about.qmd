@@ -7,3 +7,4 @@ This site show the weather forecast of Montpellier
 First of all i tried to get the data via Pooch retrieve and used this to get all the data I needed.
 I then printed them all to see them then tried to get them in multiple variable.
 I took hourly variable and took the max and min of temperatures, then made the mean of the wind speed per hour.
+

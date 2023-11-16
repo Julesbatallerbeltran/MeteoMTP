@@ -133,7 +133,7 @@ html_code = f"""
 
 <table border="1" cellspacing="10">
     <!-- Ligne 1 -->
-    <tr title="Date" style="background-color: rgb(255,165,0)">
+    <tr title="Date" style="background-color: rgb(255,184,77)">
         <th>    
             {nameday[0]}
             <br>Today

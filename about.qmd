@@ -2,8 +2,6 @@
 title: "About"
 ---
 
-About this site
+This site show the weather forecast of Montpellier 
 
-```{r}
-1 + 1
-```
+

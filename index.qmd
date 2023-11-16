@@ -133,7 +133,7 @@ html_code = f"""
 
 <table border="1" cellspacing="10">
     <!-- Ligne 1 -->
-    <tr title="Date" style="background-color: rgb(135, 206, 250)">
+    <tr title="Date" style="background-color: rgb(255,165,0)">
         <th>    
             {nameday[0]}
             <br>Today
@@ -254,7 +254,7 @@ html_code = f"""
         <td>
             {wind_day[0]} km/h
             <br> Direction : 
-            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][0]}deg); display: inline-block; margin: 0 auto;">
+            <div style="width: 13px; height: 13px; overflow: hidden; transform: rotate({data["daily"]["wind_direction_10m_dominant"][0]}deg); display: inline-block; margin: 0 auto;"> 
                 
                 <div style="width: 11px; height: 11px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 15px solid black;">
             
@@ -381,8 +381,6 @@ display(HTML(html_code))
 ```{python}
 #| echo: false
 #| warning: false
-#| 
-datetime.utcfromtimestamp(1700131598.8112667)
 
 CT=current_time.replace(microsecond=0)
 print(f"Computation was performed at : {CT} (GMT)")

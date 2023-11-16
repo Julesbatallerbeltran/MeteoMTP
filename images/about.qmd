@@ -1,0 +1,17 @@
+---
+title: "About"
+---
+
+This site show the weather forecast of Montpellier 
+
+First of all i tried to get the data via Pooch retrieve and used this to get all the data I needed.
+I then printed them all to see them then tried to get them in multiple variable.
+I took hourly variable and took the max and min of temperatures, then made the mean of the wind speed per hour.
+
+I then tried to made them appear in a table, but figured pooch.retrieve was hard to use and tried to use request in place.
+I though the code will call the API each time someone would tried to go on the site, and the limit was 10000, so achieved to make the perfect stockage of data then using the stored data and timestamp so it would actualise every 90 seconds.
+
+I then understood we didn't put the qmd online, but only the html that I was creating each time I preview my index qmd.
+The evalution was to make an automatic site so it was failed.
+
+i now try to make a cron on the yml file.

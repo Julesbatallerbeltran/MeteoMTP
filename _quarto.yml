@@ -1,12 +1,9 @@
-on:
-  schedule:
-    - cron: '*/15 * * * *'
-
 project:
   type: website
   output-dir: docs
   render:
    - index.qmd
+   - about.qmd
 
 
 website:

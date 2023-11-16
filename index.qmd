@@ -8,7 +8,7 @@ title: "Weather forecast in Montpellier"
     #| warning: false
     from IPython.display import display, HTML
     import json
-    from datetime import datetime, timedelta
+    from datetime import datetime
     #import pandas as pd
     #import plotly.express as px
     import numpy as np
@@ -17,7 +17,6 @@ title: "Weather forecast in Montpellier"
     import requests
     #import schedule
     import time
-    from dateutil.relativedelta import relativedelta
     #
     #def store_data(response_data):
     #    timestamp = time.time()

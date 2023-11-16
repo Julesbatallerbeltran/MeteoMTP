@@ -1,5 +1,5 @@
 ---
-title: "MeteoMTP"
+title: "Weather forecast in Montpellier"
 ---
 
 
@@ -386,7 +386,6 @@ datetime.utcfromtimestamp(1700131598.8112667)
 
 CT=current_time.replace(microsecond=0)
 print(f"Computation was performed at : {CT} (GMT)")
-print(datetime.utcfromtimestamp(1700132612.9468145))
 ```
 
 Sources are: <a href="https://open-meteo.com/

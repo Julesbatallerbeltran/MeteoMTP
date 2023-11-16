@@ -1,0 +1,4 @@
+numpy==1.24.3
+ipython==8.17.1
+Requests==2.31.0
+Datetime==5.2

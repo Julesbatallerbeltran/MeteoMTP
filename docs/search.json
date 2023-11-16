@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Weather forecast in Montpellier",
+    "section": "",
+    "text": "Thursday\nToday\n\nFriday\nTomorrow\n\nSaturday\n18 November\n\nSunday\n19 November\n\nMonday\n20 November\n\nTuesday\n21 November\n\nWednesday\n22 November\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTemperatures\nMin :6.7°\nMax : 14.7°\n\nTemperatures\nMin :10.8°\nMax :16.6°\n\nTemperatures\nMin :6.5°\nMax :16.7°\n\nTemperatures\nMin :7.0°\nMax:21.3°\n\nTemperatures\nMin :11.0°\nMax :17.1°\n\nTemperatures\nMin :9.3°\nMax :16.0°\n\nTemperatures\nMin :7.6°\nMax :14.3°\n\n\n\n7 km/h\nDirection :\n\n\n\n\n\n\n\n13 km/h\nDirection :\n\n\n\n\n\n\n\n4 km/h\nDirection :\n\n\n\n\n\n\n\n8 km/h\nDirection :\n\n\n\n\n\n\n\n11 km/h\nDirection :\n\n\n\n\n\n\n\n17 km/h\nDirection :\n\n\n\n\n\n\n\n19 km/h\nDirection :\n\n\n\n\n\n\n\n\n\nPrecipitation  0.8 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\nPrecipitation  0.0 mm\n\n\n\n\n\n\n\nComputation was performed at : 2023-11-16 20:09:44 (GMT)\n\n\nSources are: Open meteo"
+  },
+  {
+    "objectID": "docs/about.html",
+    "href": "docs/about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site show the weather forecast of Montpellier\nFirst of all i tried to get the data via Pooch retrieve and used this to get all the data I needed. I then printed them all to see them then tried to get them in multiple variable. I took hourly variable and took the max and min of temperatures, then made the mean of the wind speed per hour.\nI then tried to made them appear in a table, but figured pooch.retrieve was hard to use and tried to use request in place. I though the code will call the API each time someone would tried to go on the site, and the limit was 10000, so achieved to make the perfect stockage of data then using the stored data and timestamp so it would actualise every 90 seconds.\nI then understood we didn’t put the qmd online, but only the html that I was creating each time I preview my index qmd. The evalution was to make an automatic site so it was failed.\ni now try to make a cron on the yml file."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site show the weather forecast of Montpellier\nFirst of all i tried to get the data via Pooch retrieve and used this to get all the data I needed. I then printed them all to see them then tried to get them in multiple variable. I took hourly variable and took the max and min of temperatures, then made the mean of the wind speed per hour.\nI then tried to made them appear in a table, but figured pooch.retrieve was hard to use and tried to use request in place. I though the code will call the API each time someone would tried to go on the site, and the limit was 10000, so achieved to make the perfect stockage of data then using the stored data and timestamp so it would actualise every 90 seconds.\nI then understood we didn’t put the qmd online, but only the html that I was creating each time I preview my index qmd. The evalution was to make an automatic site so it was failed.\ni now try to make a cron on the yml file."
+  }
+]

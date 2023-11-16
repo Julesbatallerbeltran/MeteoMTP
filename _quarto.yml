@@ -1,12 +1,11 @@
 on:
   schedule:
-    - cron: '15 * * * *'
+    - cron: '1 * * * *'
 
 project:
   type: website
   output-dir: docs
-  render: 
-    - index.qmd
+
 
 website:
   title: "MeteoMTP"
